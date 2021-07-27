@@ -3,16 +3,30 @@
     Choose any option to see error message "el._assign is not a function" in
     console:<br />
 
+    <h3>Formulate Component</h3>
     <formulate-input
       type="radio"
       :options="['Option A', 'Option B', 'Option C', 'Option D']"
       placeholder="Select multiple options"
       v-model="option"
-      @change="handleValueChange"
     />
 
     <br />
     <hr />
+    <br />
+
+    <h3>Plain</h3>
+    Option B: <input type="radio" v-model="option" value="Option B" /> Option C:
+    <input type="radio" v-model="option" value="Option C" />
+
+    <br />
+    <br />
+
+    <h3>Custom Component</h3>
+   <radio-button v-model="option" option="Option B" />
+    <radio-button v-model="option" option="Option C" />
+
+    <br />
     <br />
 
     Changing option value does not update "option" attribute:<br />
@@ -64,10 +78,13 @@
 
 <script>
 import { onMounted, ref } from "vue";
+import RadioButton from "./RadioButton.vue";
 
 export default {
   name: "Content",
-  components: {},
+  components: {
+    RadioButton,
+  },
   setup() {
     const focused = ref(false);
     const option = ref("Option C");
